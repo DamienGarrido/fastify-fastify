@@ -259,6 +259,9 @@ function fastify (options) {
     get: function _get (url, options, handler) {
       return router.prepareRoute.call(this, { method: 'GET', url, options, handler })
     },
+    query: function _query (url, options, handler) {
+      return router.prepareRoute.call(this, { method: 'QUERY', url, options, handler })
+    },
     head: function _head (url, options, handler) {
       return router.prepareRoute.call(this, { method: 'HEAD', url, options, handler })
     },

@@ -6,21 +6,23 @@ The route methods will configure the endpoints of your application. You have two
 ways to declare a route with Fastify: the shorthand method and the full
 declaration.
 
-- [Full declaration](#full-declaration)
-- [Routes options](#routes-options)
-- [Shorthand declaration](#shorthand-declaration)
-- [Url building](#url-building)
-- [Async Await](#async-await)
-- [Promise resolution](#promise-resolution)
-- [Route Prefixing](#route-prefixing)
-  - [Handling of / route inside prefixed
-    plugins](#handling-of--route-inside-prefixed-plugins)
-- [Custom Log Level](#custom-log-level)
-- [Custom Log Serializer](#custom-log-serializer)
-- [Config](#config)
-- [Constraints](#constraints)
-  - [Version Constraints](#version-constraints)
-  - [Host Constraints](#host-constraints)
+- [Routes](#routes)
+  - [Full declaration](#full-declaration)
+  - [Routes options](#routes-options)
+  - [Shorthand declaration](#shorthand-declaration)
+  - [Url building](#url-building)
+  - [Async Await](#async-await)
+  - [Promise resolution](#promise-resolution)
+  - [Route Prefixing](#route-prefixing)
+  - [Route Prefixing and fastify-plugin](#route-prefixing-and-fastify-plugin)
+    - [Handling of / route inside prefixed plugins](#handling-of--route-inside-prefixed-plugins)
+  - [Custom Log Level](#custom-log-level)
+  - [Custom Log Serializer](#custom-log-serializer)
+  - [Config](#config)
+  - [Constraints](#constraints)
+    - [Version Constraints](#version-constraints)
+    - [Host Constraints](#host-constraints)
+    - [Asynchronous Custom Constraints](#asynchronous-custom-constraints)
 
 ### Full declaration
 <a id="full-declaration"></a>
@@ -32,9 +34,9 @@ fastify.route(options)
 ### Routes options
 <a id="options"></a>
 
-* `method`: currently it supports `'DELETE'`, `'GET'`, `'HEAD'`, `'PATCH'`,
+* `method`: currently it supports `'DELETE'`, `'GET'`, `'QUERY'`, `'HEAD'`, `'PATCH'`,
   `'POST'`, `'PUT'`, `'OPTIONS'`, `'SEARCH'`, `'TRACE'`, `'PROPFIND'`,
-  `'PROPPATCH'`, `'MKCOL'`, `'COPY'`, `'MOVE'`, `'LOCK'`, `'UNLOCK'`, 
+  `'PROPPATCH'`, `'MKCOL'`, `'COPY'`, `'MOVE'`, `'LOCK'`, `'UNLOCK'`,
   `'REPORT'` and `'MKCALENDAR'`.
   It could also be an array of methods.
 * `url`: the path of the URL to match this route (alias: `path`).
@@ -42,7 +44,7 @@ fastify.route(options)
   need to be in [JSON Schema](https://json-schema.org/) format, check
   [here](./Validation-and-Serialization.md) for more info.
 
-  * `body`: validates the body of the request if it is a POST, PUT, PATCH,
+  * `body`: validates the body of the request if it is a QUERY, POST, PUT, PATCH,
     TRACE, SEARCH, PROPFIND, PROPPATCH or LOCK method.
   * `querystring` or `query`: validates the querystring. This can be a complete
     JSON Schema object, with the property `type` of `object` and `properties`
@@ -177,6 +179,8 @@ The above route declaration is more *Hapi*-like, but if you prefer an
 *Express/Restify* approach, we support it as well:
 
 `fastify.get(path, [options], handler)`
+
+`fastify.query(path, [options], handler)`
 
 `fastify.head(path, [options], handler)`
 

@@ -182,6 +182,7 @@ export interface FastifyInstance<
 
   delete: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
   get: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
+  query: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
   head: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
   patch: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
   post: RouteShorthandMethod<RawServer, RawRequest, RawReply, TypeProvider, Logger>;
